@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uplode Content Page</title>
+    <link href="css/UplodeContent.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5e28c1ddda.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<style>
+    :root{
+        --bac_color: #276df3;
+        --bac_white_color:#ffffff;
+    }
+    body{
+
+        font-family: "Times New Roman";
+    }
+    .class_uplode_div {
+        width: 100%;
+        height: 60vh;
+        padding:0px 60px;
+        margin: auto;
+    }
+    .class_uplode_div input {
+        margin-top: 25px;
+        outline: none;
+    }
+    .class_uplode_div textarea{
+        margin-top: 25px;
+        outline: none;
+        min-height: auto;
+        overflow: hidden;
+    }
+    .class_navbar_block {
+        width: 100%;
+        height: 15vh;
+        background-color:var(--bac_color);
+    }
+    .navbar {
+        width: 100%;
+        height: 100%;
+        padding: inherit;
+    }
+    .navbar_img img {
+        width: 15vh;
+        height: 15vh;
+        border-radius: 50%;
+    }
+    .navbar_text {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: whitesmoke;
+    }
+    .navbar_text h1 {
+        padding-top: 5vh;
+        text-align: center;
+    }
+    ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        width: 100%;
+        margin-top: 5vh;
+
+
+    }
+    li {
+        border-radius: 12px;
+        text-align: center;
+        align-items: center;
+        padding: 1%;
+
+
+    }
+    li:hover{
+        box-shadow: 0px 1px 3px 0px rgba(0,0,0,.5);!important;
+    }
+    li a {
+        color: var(--bac_color);!important;
+        display: block;!important;
+        text-decoration: none;
+
+        font-size: 14pt;
+
+    }
+    li a:hover{
+        width: 100%;!important;
+        color: var(--bac_color);!important;
+        align-self: center;!important;
+    }
+
+</style>
+</head>
+<body>
+<div class="class_navbar_block" >
+    <nav class="navbar" >
+            <span class="navbar_text" >
+                <h1>
+                    MAHSULOTLARNI YUKLASH
+                </h1>
+            </span>
+    </nav>
+</div>
+<div th:insert="AdminTemplate::menu_fragment" >
+
+</div>
+<div class="container input-group mb-3">
+
+    <form class="class_uplode_div" action="upload" th:action="@{/uplode_content}" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" class="form-control" placeholder="mahsulot nomi" />
+
+        <input type="text" name="quality" class="form-control" placeholder="maxsulot Hajmi" />
+        <input type="text" name="price" class="form-control" placeholder="Maxsulot Narxi" />
+        <input type="text" name="classes" class="form-control" placeholder="maxsulotni havlilik darajasi" />
+        <textarea class="form-control" name="aboutContent" placeholder="mahsulot tasnifi" ></textarea>
+        <input type="file" name="file" class="form-control" id="inputGroupFile02" placeholder="File yuklash" value="Jo'natish"  />
+        <div style="width: 80%; margin: 5px auto" >
+            <div class="form-check form-switch" style="padding: 5px; color: var(--bac_color); width: 100%; display: flex; align-items: flex-end " >
+                <input value="Zahar" name="content" class="form-check-input" type="radio" role="switch" id="flexSwitchCheckChecked">
+                <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-bottom:-.3rem; margin-left: 2.5rem" >Zahar Qo'shayotgan Bo'langiz Belgilang</label>
+            </div>
+            <div class="form-check form-switch" style="padding: 5px; color: var(--bac_color); width: 100%; display: flex;align-items: end" >
+                <input value="o'g'it" name="content" class="form-check-input" type="radio" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-bottom:-.3rem; margin-left: 2.5rem " >O'g'it Qo'shayotgan Bo'lsangiz Belgilang</label>
+            </div>
+            <div class="form-check form-switch" style="padding: 5px; color: var(--bac_color); width: 100%; display: flex; align-items: flex-end " >
+                <input value="Boshqa" name="content" class="form-check-input" type="radio" role="switch" id="flexSwitchCheckChecked">
+                <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-bottom:-.3rem; margin-left: 2.5rem" >Boshqa Qo'shayotgan Bo'langiz Belgilang</label>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Jo'natish" />
+    </form>
+
+</div>
+</body>
+</html>

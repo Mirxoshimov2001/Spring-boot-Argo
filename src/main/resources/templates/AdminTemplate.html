@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="ISO-8859-1" />
+    <meta name="viewport"  content="width=device-width, initial-scale=1" />
+    <title>Admin.mineral.ximikat.MCHJ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5e28c1ddda.js" crossorigin="anonymous"></script>
+
+    <style>
+        :root{
+            --bac_color: #276df3;
+            --bac_white_color:#ffffff;
+        }
+        body{
+            background-color: var(--bac_white_color);
+            font-size: 14pt;
+        }
+        .class_navbar_block {
+            width: 100%;
+            height: 15vh;
+            background-color: var(--bac_color);
+        }
+        .navbar {
+            width: 100%;
+            height: 100%;
+            padding: inherit;
+        }
+        .navbar_text {
+            width: 100%;
+            height: 100%;
+            font-family: "Times New Roman";
+            text-align: center;
+            color: whitesmoke;
+        }
+        .navbar_text h1 {
+            padding-top: 5vh;
+            text-align: center;
+        }
+        .table_order {
+            width: 100%;
+            height: auto;
+            background-color: var(--bac_color);
+            margin-top: 25px;
+            text-align: center;
+        }
+        .table_order thead{
+            color: var(--bac_white_color);
+            background-color: var(--bac_color);
+        }
+        .table_order thead td {
+            font-size: 20pt;
+            font-style: initial;
+            font-family: "Times New Roman";
+            border-right: 2px solid var(--bac_white_color);
+
+        }
+        .table_order tbody{
+            color: var(--bac_white_color);
+            background-color:  var(--bac_color);
+        }
+        .table_order button {
+            margin-left: 10px;
+        }
+        .table_order tbody td
+        {
+            border: 1px solid var(--bac_white_color);
+            margin:5px;
+        }
+        a {
+            color:var(--bac_white_color) ;
+            text-align: center;
+            font-size: 16pt;
+            font-family: "Times New Roman";
+            text-decoration: none;
+            text-underline: none;
+        }
+        a:hover{
+            color: var(--bac_white_color);
+            text-decoration: var(--bac_white_color);
+            text-underline: var(--bac_white_color);
+        }
+        ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            width: 100%;
+            margin-top: 5vh;
+
+
+        }
+        li {
+            border-radius: 12px;
+            text-align: center;
+            align-items: center;
+            padding: 1%;
+
+
+        }
+        li:hover{
+            box-shadow: 0px 3px 5px 0px rgba(0,0,0,.5);
+        }
+        li a {
+            color:  var(--bac_color);
+            display: block;
+        }
+        li a:hover{
+            width: 100%;
+            color: var(--bac_color);
+            align-self: center;
+        }
+        .menu-bar{
+            width: 95%;
+            margin: 5px auto;
+        }
+    </style>
+
+</head>
+
+<body class="content_" >
+<div class="class_navbar_block" >
+    <nav class="navbar" >
+            <span class="navbar_text" >
+                <h1>
+                    BUYURTMALAR
+                </h1>
+            </span>
+    </nav>
+</div>
+<div th:fragment="menu_fragment" class="menu-bar" >
+    <ul>
+        <li>
+            <a href="/all_product">Barcha Mahsulotlar</a>
+        </li>
+        <li>
+            <a href="/uplode_content">Mahsulot yuklash</a>
+        </li>
+        <li>
+            <a href="/home_page">Bosh sahifa boshqaruvi</a>
+        </li>
+        <li>
+            <a href="/help_admin">Yordam muloqot oynasi</a>
+        </li>
+        <li>
+            <a href="/">Buyurmalar</a>
+        </li>
+    </ul>
+</div>
+<div th:switch="${order}"}>
+  <div th:case="null" >
+      <h1>Malumotlar yuklab olinmadi! Yana bir bor harakat qilib koring</h1>
+  </div>
+    <table th:case="*"  class="table_order" >
+        <thead>
+            <td>Ism</td>
+            <td>Familya</td>
+            <td>Telefon</td>
+            <td>Email</td>
+            <td>Soni</td>
+            <td>Mahsulot</td>
+            <td>Amaliyot</td>
+
+
+        </thead>
+        <tbody th:each="info:${order}"   >
+            <td th:text="${info.getName()}" ></td>
+            <td th:text="${info.getSurname()}"  ></td>
+            <td th:text="${info.getNumber()}"  ></td>
+            <td th:text="${info.getEmail()}"  ></td>
+            <td th:text="${info.getOrder_Quality()}"  ></td>
+            <td th:text="${info.getContent_name()}"  ></td>
+            <td class="btn btn-danger" >  <a th:href="@{/order_delete/{id}(id=${info.getId()})}">O'chirish</a></button></td>
+            <td class="btn btn-danger" >  <a th:href="@{/order_cencel/{id}(id=${info.getId()})}">Bekor qilish</a></button></td>
+
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>
