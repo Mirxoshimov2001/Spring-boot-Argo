@@ -86,6 +86,7 @@ public class ControllerUpdate {
     private Content findContent(long id){
        return contentService.findById(id);
     }
+
     private void UpdateFile(MultipartFile file, String hashId){
         fileService.save(file, hashId);
     }
