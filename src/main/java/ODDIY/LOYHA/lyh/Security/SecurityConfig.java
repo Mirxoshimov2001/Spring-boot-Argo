@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://mineralximikat.uz/","https://mineralximikat.uz/","https://isf.netlify.app/","http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("http://mineralximikat.uz/","https://mineralximikat.uz/","https://isfmineral.netlify.app/","http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT","DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
