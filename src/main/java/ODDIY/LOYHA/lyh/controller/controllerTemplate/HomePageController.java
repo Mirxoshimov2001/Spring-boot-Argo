@@ -134,7 +134,8 @@ public class HomePageController {
             if (name.length() == 0 || file.getSize() == 0 || number.length()==0){
                 return "ErrorPage";
             }
-           long number_ = Long.parseLong(number.substring(1));
+
+           long number_ = Long.parseLong(KRICK(number));
            HomePageUser pageUser = new HomePageUser();
            String hashId = hashids.encode(number_);
            pageUser.setName(name);
@@ -188,6 +189,15 @@ public class HomePageController {
         }
 
         return "ErrorLink";
+    }
+
+    private static String KRICK(String a){
+        if (a.length() <= 9){
+            return a = a.replaceAll("\\s+", "");
+        }
+        int begin = a.length() - 9;
+        String subA = a.substring(begin);
+        return subA = subA.replaceAll("\\s+", "");
     }
 
 }
